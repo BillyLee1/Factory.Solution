@@ -1,0 +1,14 @@
+@model Factory.Models.Machine
+
+@using(Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MachineId)
+
+  @Html.LabelFor(model => model.MachineName)
+  @Html.EditorFor(model => model.MachineName)
+
+  <input type="submit" value="Submit" />
+
+}
+
+<p>@Html.ActionLink("Back to Machines", "Index")</p>
