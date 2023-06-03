@@ -1,0 +1,17 @@
+@model Factory.Models.Engineer
+
+@using(Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.EngineerId)
+
+  @Html.LabelFor(model => model.EngineerName)
+  @Html.EditorFor(model => model.EngineerName)
+
+  @Html.LabelFor(model => model.Machine)
+  @Html.DropDownList("MachineId")
+
+  <input type="submit" value="Submit" />
+
+}
+
+<p>@Html.ActionLink("Back to Engineers", "Index")</p>
