@@ -1,0 +1,13 @@
+@model Factory.Models.Machine
+
+<h4>Add a new machine</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.MachineName)
+  @Html.TextBoxFor(model => model.MachineName)
+
+  <input type="submit" value="Add new Machine"/>
+
+  <p>@Html.ActionLink("Go back to Machines", "Index")</p>
+}
