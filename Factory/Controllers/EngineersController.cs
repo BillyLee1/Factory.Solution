@@ -23,5 +23,10 @@ namespace Factory.Controllers
                             .ToList();
       return View(model);
     }
+
+    public ActionResult Create()
+    {
+      return View();
+    }
   }
 }
