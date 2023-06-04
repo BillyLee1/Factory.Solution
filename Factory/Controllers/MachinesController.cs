@@ -37,6 +37,7 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       Machine thisMachine = _db.Machines
+                              .Include(engineer => engineer.JoinEntities)
                               .FirstOrDefault(machine => machine.MachineId == id);
       return View(thisMachine);
     }

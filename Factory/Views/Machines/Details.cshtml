@@ -1,7 +1,9 @@
 @model Factory.Models.Machine
 @using Factory.Models
+@using System.Collections.Generic;
 
 <h2> @Html.DisplayFor(model => model.MachineName) </h2>
+
 
 <p>@Html.ActionLink("Edit Machine", "Edit", new { id = Model.MachineId })</p>
 
