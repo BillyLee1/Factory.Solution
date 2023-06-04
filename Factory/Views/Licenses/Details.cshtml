@@ -1,0 +1,23 @@
+@using Factory.Models
+@model Factory.Models.License
+
+<h2>License Details</h2>
+<hr />
+<h3> @Html.DisplayFor(model => model.LicenseName)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This license does not belong to an engineer.</p>
+}
+else
+{
+  <h4>Engineers who have this license</h4>
+  <ul>
+  @foreach(EngineerLicense join in Model.JoinEntities)
+  {
+    <li>@join.Engineer.EngineerName</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to licenses", "Index")</p>

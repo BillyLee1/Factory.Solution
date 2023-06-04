@@ -41,6 +41,9 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       Engineer thisEngineer = _db.Engineers
+                              .Include(engineer => engineer.Machine)
+                              .Include(engineer => engineer.JoinEntities)
+                              .ThenInclude(join => join.License)
                               .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
     }

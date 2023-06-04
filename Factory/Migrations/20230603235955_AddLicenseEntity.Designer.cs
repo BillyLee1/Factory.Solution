@@ -2,6 +2,7 @@
 using Factory.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Factory.Migrations
 {
     [DbContext(typeof(FactoryContext))]
-    partial class FactoryContextModelSnapshot : ModelSnapshot
+    [Migration("20230603235955_AddLicenseEntity")]
+    partial class AddLicenseEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,27 +37,6 @@ namespace Factory.Migrations
                     b.HasIndex("MachineId");
 
                     b.ToTable("Engineers");
-                });
-
-            modelBuilder.Entity("Factory.Models.EngineerLicense", b =>
-                {
-                    b.Property<int>("EngineerLicenseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("EngineerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LicenseId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EngineerLicenseId");
-
-                    b.HasIndex("EngineerId");
-
-                    b.HasIndex("LicenseId");
-
-                    b.ToTable("EngineerLicenses");
                 });
 
             modelBuilder.Entity("Factory.Models.License", b =>
@@ -95,35 +76,6 @@ namespace Factory.Migrations
                         .IsRequired();
 
                     b.Navigation("Machine");
-                });
-
-            modelBuilder.Entity("Factory.Models.EngineerLicense", b =>
-                {
-                    b.HasOne("Factory.Models.Engineer", "Engineer")
-                        .WithMany("JoinEntities")
-                        .HasForeignKey("EngineerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Factory.Models.License", "License")
-                        .WithMany("JoinEntities")
-                        .HasForeignKey("LicenseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Engineer");
-
-                    b.Navigation("License");
-                });
-
-            modelBuilder.Entity("Factory.Models.Engineer", b =>
-                {
-                    b.Navigation("JoinEntities");
-                });
-
-            modelBuilder.Entity("Factory.Models.License", b =>
-                {
-                    b.Navigation("JoinEntities");
                 });
 
             modelBuilder.Entity("Factory.Models.Machine", b =>

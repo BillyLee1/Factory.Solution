@@ -3,7 +3,20 @@
 
 <h2> @Html.DisplayFor(model => model.EngineerName) </h2>
 
-<h3>Machines this person works on</h3>
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This engineer does not have any licenses yet!</p>
+}
+else
+{
+  <h4>This engineer has the following licenses:</h4>
+  <ul>
+    @foreach(EngineerLicense join in Model.JoinEntities)
+    {
+      <li>License: @join.License.LicenseName</li>
+    }
+  </ul>
+}
 
 <p>@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId })</p>
 
