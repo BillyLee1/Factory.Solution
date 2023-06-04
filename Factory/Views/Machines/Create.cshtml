@@ -7,6 +7,9 @@
   @Html.LabelFor(model => model.MachineName)
   @Html.TextBoxFor(model => model.MachineName)
 
+  @Html.LabelFor(model => model.MachineDesc, "Description: ")
+  @Html.TextBoxFor(model => model.MachineDesc)
+
   <input type="submit" value="Add new Machine"/>
 
   <p>@Html.ActionLink("Go back to Machines", "Index")</p>

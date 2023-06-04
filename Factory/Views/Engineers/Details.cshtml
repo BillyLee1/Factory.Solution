@@ -3,6 +3,26 @@
 
 <h2> @Html.DisplayFor(model => model.EngineerName) </h2>
 
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This Engineer has no licenses to any machines yet</p>
+}
+else
+{
+  <h4>This Engineer has the licenses for: </h4>
+  <ul>
+    @foreach(EngineerMachine join in Model.JoinEntities)
+    {
+      <li>Machine:@join.Machine.MachineName   |   Description: @join.Machine.MachineDesc</li>
+      @using (Html.BeginForm("DeleteJoin", "Engineers"))
+      {
+        @Html.Hidden("joinId", @join.EngineerMachineId)
+        <input type = "submit" value = "Delete" />
+      }
+    }  
+  </ul>  
+}
+
 
 <p>@Html.ActionLink("Back to engineers", "Index")</p>
 <p>@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId })</p>
